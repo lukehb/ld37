@@ -3,26 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent (typeof (CircleCollider2D))]
+[RequireComponent (typeof (Animator))]
 public class Player : MonoBehaviour {
 
 	private const string MoveHorizontalBtn = "Move Horizontal";
 	private const string MoveVerticalBtn = "Move Vertical";
+	private const string AttackBtn = "Attack";
+	private static readonly int PunchingAnimationId = Animator.StringToHash ("Punching");
 
 	/**
-	 * Gameobjects attached to player
+	 * Fields
 	 **/
-	[SerializeField]
-	private GameObject Body;
+	private Animator anim;
 
 	/**
 	 * Player stats to tweak
 	 **/
 	[SerializeField]
+	private GameObject Body;
+
+	[SerializeField]
 	private float Speed = 10;
 
 	// Use this for initialization
 	void Start () {
-		
+		anim = GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -51,6 +56,9 @@ public class Player : MonoBehaviour {
 			float scaledSpeed = (isDown ? -Speed : Speed) * Time.deltaTime;
 			Vector3 displacement = this.transform.up * scaledSpeed;
 			transform.Translate (displacement, Space.World);
+		}
+		if(Input.GetButtonDown(AttackBtn)){
+			anim.SetTrigger(PunchingAnimationId);
 		}
 	}
 
