@@ -9,15 +9,17 @@ public class Player : MonoBehaviour {
 	private const string MoveHorizontalBtn = "Move Horizontal";
 	private const string MoveVerticalBtn = "Move Vertical";
 	private const string AttackBtn = "Attack";
-	private static readonly int PunchingAnimationId = Animator.StringToHash ("Punching");
+	private static readonly int IsPunchingTriggerId = Animator.StringToHash ("IsPunching");
+    private static readonly string AttackingStateTag = "Attacking";
 
 	/**
 	 * Fields
 	 **/
 	private Animator anim;
+    private bool isAttacking = false;
 
 	/**
-	 * Player stats to tweak
+	 * Player things to tweak
 	 **/
 	[SerializeField]
 	private GameObject Body;
@@ -25,16 +27,46 @@ public class Player : MonoBehaviour {
 	[SerializeField]
 	private float Speed = 10;
 
+    //Some damagers are attached to the player (like fists) and should only
+    //do damage to things when an attacking animation is playing.
+    [SerializeField]
+    private Damager[] attachedDamagers = new Damager[2];
+
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();
+        //intialise damagers based on if attacking or not
+        foreach (Damager attachedDamager in this.attachedDamagers)
+        {
+            attachedDamager.enabled = this.isAttacking;
+        }
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        PollAnimationState();
 		BodyPartsFaceMouse ();
 		HandleInput ();
 	}
+
+    void PollAnimationState()
+    {
+        AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+        bool curIsAttacking = stateInfo.IsTag(Player.AttackingStateTag);
+        if(curIsAttacking != isAttacking)
+        {
+            this.isAttacking = curIsAttacking;
+            ToggleDamagers(this.isAttacking);
+        }
+    }
+
+    void ToggleDamagers(bool toggleOn)
+    {
+        foreach (Damager attachedDamager in this.attachedDamagers)
+        {
+            attachedDamager.enabled = toggleOn;
+        }
+    }
 
 	void BodyPartsFaceMouse(){
 		Vector3 screenMousePos = Input.mousePosition;
@@ -58,7 +90,7 @@ public class Player : MonoBehaviour {
 			transform.Translate (displacement, Space.World);
 		}
 		if(Input.GetButtonDown(AttackBtn)){
-			anim.SetTrigger(PunchingAnimationId);
+			anim.SetTrigger(IsPunchingTriggerId);
 		}
 	}
 

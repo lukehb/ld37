@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class Damagable : MonoBehaviour {
 
-    private Vector3 cameraRestorePosition;
+    /**
+     * Exposed inspector fields
+     **/
+    [SerializeField]
+    private float health = 5;
+
+    [SerializeField]
+    private DamageEffect damageEffect;
 
 	// Use this for initialization
 	void Start () {
-        cameraRestorePosition = Camera.main.transform.position;
     }
 	
 	// Update is called once per frame
@@ -18,10 +24,29 @@ public class Damagable : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other){
         Damager damager = other.GetComponent<Damager>();
-        if(damager != null)
+        if(damager != null && damager.enabled)
         {
-            Camera.main.GetComponent<ScreenShakeEffect>().StartScreenShake();
+            damager.DealDamageTo(this);
         }
     }
+
+    /**
+     * Public stuff
+     **/
+    public float Health
+    {
+        get { return this.health; }
+    }
+
+    public void DecrementHealth(float damage)
+    {
+        this.health = Mathf.Min(0, this.health - damage);
+        this.damageEffect.PlayEffect();
+        if (health <= 0)
+        {
+            //DoDeathEffect();
+        }
+    }
+
 
 }

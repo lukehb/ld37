@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent (typeof (Camera))]
-public class ScreenShakeEffect : MonoBehaviour {
+public class ScreenShakeEffect : MonoBehaviour, IVisualEffect  {
 
     [SerializeField]
     private float ShakeDurationSeconds = 0.3f;
@@ -45,7 +45,7 @@ public class ScreenShakeEffect : MonoBehaviour {
     /**
      * Public methods, so other scripts can shake the screen
      **/
-     public void StartScreenShake()
+     public void PlayEffect()
     {
         shakeTimeElapsed = 0f;
     }

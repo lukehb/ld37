@@ -122,6 +122,34 @@ Transform:
   m_Father: {fileID: 1437188531}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &232791005
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 232791006}
+  m_Layer: 0
+  m_Name: DeathParticle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &232791006
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 232791005}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &535345539
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,6 +160,7 @@ GameObject:
   - component: {fileID: 535345540}
   - component: {fileID: 535345542}
   - component: {fileID: 535345541}
+  - component: {fileID: 535345543}
   m_Layer: 0
   m_Name: LeftHand
   m_TagString: Untagged
@@ -201,6 +230,18 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 1
+--- !u!114 &535345543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 535345539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d74d36d5a676c44da9b1604e92e3b4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
 --- !u!1 &672254718
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,6 +410,7 @@ GameObject:
   - component: {fileID: 1224207339}
   - component: {fileID: 1224207342}
   - component: {fileID: 1224207340}
+  - component: {fileID: 1224207341}
   m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
@@ -403,6 +445,18 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.08, y: 0.08}
+--- !u!114 &1224207341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1224207338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d74d36d5a676c44da9b1604e92e3b4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
 --- !u!212 &1224207342
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -450,6 +504,7 @@ GameObject:
   - component: {fileID: 1313503472}
   - component: {fileID: 1313503471}
   - component: {fileID: 1313503470}
+  - component: {fileID: 1313503475}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -525,6 +580,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1313503475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1313503469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd67d29c2c00754d9b73cf2ea50a177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShakeDurationSeconds: 0.2
+  MaxShakeIntensity: 0.15
 --- !u!1 &1437188529
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,6 +673,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Body: {fileID: 186003230}
   Speed: 5
+  attachedDamagers:
+  - {fileID: 535345543}
+  - {fileID: 1224207341}
 --- !u!95 &1437188534
 Animator:
   serializedVersion: 3
@@ -631,7 +702,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1679067508}
   - component: {fileID: 1679067507}
+  - component: {fileID: 1679067509}
   - component: {fileID: 1679067506}
+  - component: {fileID: 1679067510}
   m_Layer: 0
   m_Name: Creep
   m_TagString: Untagged
@@ -652,7 +725,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.16, y: 0.16}
 --- !u!212 &1679067507
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -666,7 +739,7 @@ SpriteRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0824fb0f98e37fe48aeb00d1b6f86679, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -684,8 +757,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8a1feb2c3f9602244bdd50b5d93ce49f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: ae38c69ef46d81c4890891d0fc9da8ad, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!4 &1679067508
@@ -696,8 +769,34 @@ Transform:
   m_GameObject: {fileID: 1679067505}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.96, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1679067509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1679067505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2de2566c4d517d44ebbf13c9214ed40a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 5
+  damageEffect: {fileID: 1679067510}
+--- !u!114 &1679067510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1679067505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5bc9cb2f56c5be43b0c9c6076f2b189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1679067507}
+  effectDurationSeconds: 0.1
