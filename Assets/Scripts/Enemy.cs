@@ -11,9 +11,6 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 
     [SerializeField]
-    private Player player;
-
-    [SerializeField]
     private float turnSpeed;
 
     [SerializeField]
@@ -27,6 +24,8 @@ public class Enemy : MonoBehaviour {
 
     private static readonly int IsPunchingTriggerId = Animator.StringToHash("IsPunching");
     private static readonly string AttackingStateTag = "Attacking";
+
+    private Player player;
 
     // Use this for initialization
     void Start () {
@@ -71,5 +70,9 @@ public class Enemy : MonoBehaviour {
         this.transform.up = newDir;
     }
  
+    public void GoKillThisGuy(Player player)
+    {
+        this.player = player;
+    }
 
 }

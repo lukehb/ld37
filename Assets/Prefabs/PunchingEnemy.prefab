@@ -348,7 +348,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31b942dd1f4c9b74d924fd294d06c5ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   turnSpeed: 1.5
   moveSpeed: 1
   attackRadius: 2
