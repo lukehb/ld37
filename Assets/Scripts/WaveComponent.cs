@@ -13,6 +13,9 @@ public class WaveComponent : MonoBehaviour {
     [SerializeField]
     private Transform spawnLocation;
 
+    [SerializeField]
+    private Pickup pickupPrefab;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -28,6 +31,14 @@ public class WaveComponent : MonoBehaviour {
         //spawn the damagable at this spawners location
         Enemy enemy = Instantiate(enemyPrefab, this.spawnLocation.position, this.spawnLocation.rotation);
         enemy.GoKillThisGuy(player);
+        if(pickupPrefab != null)
+        {
+            Damagable damagable = enemy.gameObject.GetComponent<Damagable>();
+            if (damagable != null)
+            {
+                damagable.AttachItemDrop(pickupPrefab);
+            }
+        }
         return enemy;
     }
 

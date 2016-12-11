@@ -74,5 +74,5 @@ public class Enemy : MonoBehaviour {
     {
         this.player = player;
     }
-
+    
 }

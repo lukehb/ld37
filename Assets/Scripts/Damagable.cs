@@ -19,6 +19,7 @@ public class Damagable : MonoBehaviour {
     [SerializeField]
     private SpriteRenderer deathSplat;
 
+    private Pickup itemDropPrefab;
     private float timeElapsed = 0;
     private bool hasDeathEffectStarted = false;
     private float maxHealth = 5;
@@ -38,6 +39,12 @@ public class Damagable : MonoBehaviour {
             rot.eulerAngles = new Vector3(0, 0, Random.value * 360);
             SpriteRenderer deathSplatInst = Instantiate(deathSplat, this.transform.position, rot);
             deathSplatInst.transform.localScale =  deathSplatInst.transform.localScale + Random.onUnitSphere;
+            //spawn in item drop prefab if it has one
+            if(itemDropPrefab != null)
+            {
+                Vector3 pos = this.transform.position + Random.onUnitSphere;
+                Instantiate(itemDropPrefab, pos, Quaternion.identity);
+            }
             //remove this damagable from the scene
             Destroy(this.gameObject);
         }else if(hasDeathEffectStarted && deathEffect.IsAlive())
@@ -81,9 +88,19 @@ public class Damagable : MonoBehaviour {
         }
     }
 
+    public void RestoreHealth(float heals)
+    {
+        this.health = Mathf.Min(this.maxHealth, this.health + heals);
+    }
+
     public float MaxHealth
     {
         get { return this.maxHealth;  }
+    }
+
+    public void AttachItemDrop(Pickup pickupPrefab)
+    {
+        this.itemDropPrefab = pickupPrefab;
     }
 
 }
