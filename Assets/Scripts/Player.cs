@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent (typeof (CircleCollider2D))]
 [RequireComponent (typeof (Animator))]
@@ -32,6 +33,12 @@ public class Player : MonoBehaviour {
     [SerializeField]
     private Damager[] attachedDamagers = new Damager[2];
 
+    [SerializeField]
+    private Damagable damagable;
+
+    [SerializeField]
+    private Image healthBarFillImg;
+
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();
@@ -46,8 +53,15 @@ public class Player : MonoBehaviour {
 	void Update () {
         PollAnimationState();
 		BodyPartsFaceMouse ();
-		HandleInput ();
+		HandleInput();
+        UpdateHealthBar();
 	}
+
+    void UpdateHealthBar()
+    {
+        float fillAmt = damagable.Health / damagable.MaxHealth;
+        healthBarFillImg.fillAmount = fillAmt;
+    }
 
     void PollAnimationState()
     {

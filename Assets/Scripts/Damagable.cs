@@ -21,9 +21,11 @@ public class Damagable : MonoBehaviour {
 
     private float timeElapsed = 0;
     private bool hasDeathEffectStarted = false;
+    private float maxHealth = 5;
 
 	// Use this for initialization
 	void Start () {
+        this.maxHealth = health;
     }
 	
 	// Update is called once per frame
@@ -79,5 +81,9 @@ public class Damagable : MonoBehaviour {
         }
     }
 
+    public float MaxHealth
+    {
+        get { return this.maxHealth;  }
+    }
 
 }
