@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent (typeof (SpriteRenderer))]
 public class DamageEffect : MonoBehaviour, IVisualEffect {
 
     [SerializeField]
@@ -16,7 +15,6 @@ public class DamageEffect : MonoBehaviour, IVisualEffect {
 
     // Use this for initialization
     void Start () {
-        this.spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -48,6 +46,11 @@ public class DamageEffect : MonoBehaviour, IVisualEffect {
     public void PlayEffect()
     {
         timeElapsed = 0;
+    }
+
+    public bool IsPlaying()
+    {
+        return timeElapsed < effectDurationSeconds;
     }
 
 }
