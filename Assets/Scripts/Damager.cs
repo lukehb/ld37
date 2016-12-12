@@ -12,6 +12,19 @@ public class Damager : MonoBehaviour {
      [SerializeField]
      private float damage = 1;
 
+    public float Damage
+    {
+        get
+        {
+            return this.damage;
+        }
+
+        set
+        {
+            this.damage = value;
+        }
+    }
+
 	// Use this for initialization
 	void Start () {
         this.screenShakeEffect = Camera.main.GetComponent<ScreenShakeEffect>();
