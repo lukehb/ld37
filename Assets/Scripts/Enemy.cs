@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour {
     private static readonly int IsPunchingTriggerId = Animator.StringToHash("IsPunching");
     private static readonly string AttackingStateTag = "Attacking";
 
-    private Player player;
+    public Player Target { get; private set; }
 
     // Use this for initialization
     void Start () {
@@ -34,17 +34,17 @@ public class Enemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(player != null)
+        if(Target != null)
         {
-            SlowlyFacePlayer();
-            SlowlyWalkTowardsPlayer();
-            TryAttack();
+            Turn();
+            Move();
+            Attack();
         }
 	}
 
-    private void TryAttack()
+    protected virtual void Attack()
     {
-        double dist = Vector3.Distance(player.transform.position, this.transform.position);
+        double dist = Vector3.Distance(Target.transform.position, this.transform.position);
         if(dist <= attackRadius)
         {
             AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
@@ -56,14 +56,14 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    private void SlowlyWalkTowardsPlayer()
+    protected virtual void Move()
     {
-        this.transform.position = Vector3.MoveTowards(this.transform.position, this.player.transform.position, moveSpeed * Time.deltaTime);
+        this.transform.position = Vector3.MoveTowards(this.transform.position, this.Target.transform.position, moveSpeed * Time.deltaTime);
     }
 
-    private void SlowlyFacePlayer()
+    protected virtual void Turn()
     {
-        Vector3 targetDir = player.transform.position - this.transform.position;
+        Vector3 targetDir = Target.transform.position - this.transform.position;
         float step = Time.deltaTime * turnSpeed;
         Vector3 newDir = Vector3.RotateTowards(transform.up, targetDir, step, 0.0F);
         newDir.z = 0;
@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour {
  
     public void GoKillThisGuy(Player player)
     {
-        this.player = player;
+        this.Target = player;
     }
     
 }
