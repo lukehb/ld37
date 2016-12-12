@@ -11,13 +11,11 @@ public class Player : MonoBehaviour {
 	private const string MoveVerticalBtn = "Move Vertical";
 	private const string AttackBtn = "Attack";
 	private static readonly int IsPunchingTriggerId = Animator.StringToHash ("IsPunching");
-    private static readonly string AttackingStateTag = "Attacking";
 
 	/**
 	 * Fields
 	 **/
 	private Animator anim;
-    private bool isAttacking = false;
 
 	/**
 	 * Player things to tweak
@@ -28,11 +26,6 @@ public class Player : MonoBehaviour {
 	[SerializeField]
 	private float Speed = 10;
 
-    //Some damagers are attached to the player (like fists) and should only
-    //do damage to things when an attacking animation is playing.
-    [SerializeField]
-    private Damager[] attachedDamagers = new Damager[2];
-
     [SerializeField]
     private Damagable damagable;
 
@@ -42,16 +35,10 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();
-        //intialise damagers based on if attacking or not
-        foreach (Damager attachedDamager in this.attachedDamagers)
-        {
-            attachedDamager.enabled = this.isAttacking;
-        }
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        PollAnimationState();
 		BodyPartsFaceMouse ();
 		HandleInput();
         UpdateHealthBar();
@@ -61,25 +48,6 @@ public class Player : MonoBehaviour {
     {
         float fillAmt = damagable.Health / damagable.MaxHealth;
         healthBarFillImg.fillAmount = fillAmt;
-    }
-
-    void PollAnimationState()
-    {
-        AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
-        bool curIsAttacking = stateInfo.IsTag(Player.AttackingStateTag);
-        if(curIsAttacking != isAttacking)
-        {
-            this.isAttacking = curIsAttacking;
-            ToggleDamagers(this.isAttacking);
-        }
-    }
-
-    void ToggleDamagers(bool toggleOn)
-    {
-        foreach (Damager attachedDamager in this.attachedDamagers)
-        {
-            attachedDamager.enabled = toggleOn;
-        }
     }
 
 	void BodyPartsFaceMouse(){

@@ -12,15 +12,34 @@ public class Damager : MonoBehaviour {
      [SerializeField]
      private float damage = 1;
 
-	// Use this for initialization
-	void Start () {
-        this.screenShakeEffect = Camera.main.GetComponent<ScreenShakeEffect>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public float Damage
+    {
+        get
+        {
+            return this.damage;
+        }
+
+        set
+        {
+            this.damage = value;
+        }
+    }
+
+    [SerializeField]
+    private bool applyDamage = false;
+
+    public bool ApplyDamage
+    {
+        get
+        {
+            return this.applyDamage;
+        }
+
+        set
+        {
+            this.applyDamage = value;
+        }
+    }
 
     /**
      * Public methods
@@ -28,8 +47,18 @@ public class Damager : MonoBehaviour {
 
     public void DealDamageTo(Damagable damagable)
     {
-        this.screenShakeEffect.PlayEffect();
-        damagable.DecrementHealth(this.damage);
+        if (this.ApplyDamage)
+        {
+            if (this.screenShakeEffect == null)
+            {
+                this.screenShakeEffect = Camera.main.GetComponent<ScreenShakeEffect>();
+            }
+
+            this.screenShakeEffect.PlayEffect();
+            damagable.DecrementHealth(this.damage);
+
+            this.ApplyDamage = false;
+        }
     }
 
 }
