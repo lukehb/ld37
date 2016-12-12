@@ -9,7 +9,7 @@ public sealed class StarPickup : Pickup
 
     private sealed class Timer : MonoBehaviour
     {
-        private float timeRemaining = 8.0f;
+        private float timeRemaining = 12.0f;
 
         private void OnEnable()
         {

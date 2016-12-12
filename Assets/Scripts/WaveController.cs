@@ -8,8 +8,10 @@ public class WaveController : MonoBehaviour {
     [SerializeField]
     private Wave[] waves;
 
+    public static int currentWaveIndex = 0;
+
     [SerializeField]
-    private int currentWaveIndex = 0;
+    private GameWon gameWonScreen = null;
 
     [SerializeField]
     private Text waveUIText;
@@ -37,10 +39,17 @@ public class WaveController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (currentWave == null && currentWaveIndex + 1 < this.waves.Length)
+        if (currentWave == null)
         {
-            currentWaveIndex++;
-            StartWave();
+            if (currentWaveIndex + 1 < this.waves.Length)
+            {
+                currentWaveIndex++;
+                StartWave();
+            }
+            else
+            {
+                this.gameWonScreen.gameObject.SetActive(true);
+            }
         }
         else if(currentWave != null && currentWave.IsWaveDone)
         {

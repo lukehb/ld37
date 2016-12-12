@@ -9,10 +9,10 @@ public abstract class Pickup : MonoBehaviour
 
     public abstract void ApplyPickup(Damagable player);
 
-    protected virtual void OnCollisionEnter2D(Collision2D other)
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         Damagable damagable = other.transform.root.GetComponent<Damagable>();
-        if (damagable != null)
+        if (damagable != null && damagable.gameObject.GetComponent<Player>() != null)
         {
             GlobalAudioSource.Instance.PlayOneShot(this.pickupSound);
 
