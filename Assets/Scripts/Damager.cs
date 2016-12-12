@@ -27,6 +27,7 @@ public class Damager : MonoBehaviour {
 
     [SerializeField]
     private bool applyDamage = false;
+    private bool internalApplyDamage = false;
 
     public bool ApplyDamage
     {
@@ -37,7 +38,7 @@ public class Damager : MonoBehaviour {
 
         set
         {
-            this.applyDamage = value;
+            this.internalApplyDamage = this.applyDamage = value;
         }
     }
 
@@ -47,7 +48,7 @@ public class Damager : MonoBehaviour {
 
     public void DealDamageTo(Damagable damagable)
     {
-        if (this.ApplyDamage)
+        if (this.ApplyDamage && this.internalApplyDamage)
         {
             if (this.screenShakeEffect == null)
             {
@@ -57,7 +58,15 @@ public class Damager : MonoBehaviour {
             this.screenShakeEffect.PlayEffect();
             damagable.DecrementHealth(this.damage);
 
-            this.ApplyDamage = false;
+            this.internalApplyDamage = false;
+        }
+    }
+
+    private void Update()
+    {
+        if (!this.ApplyDamage)
+        {
+            this.internalApplyDamage = true;
         }
     }
 

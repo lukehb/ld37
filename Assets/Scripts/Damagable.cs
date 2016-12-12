@@ -61,7 +61,7 @@ public class Damagable : MonoBehaviour {
         }
 	}
 
-    void OnTriggerEnter2D(Collider2D other){
+    void OnTriggerStay2D(Collider2D other){
         Damager damager = other.GetComponent<Damager>();
         if(damager != null)
         {
