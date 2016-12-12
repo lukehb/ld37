@@ -7,6 +7,9 @@ public class GameConditions : MonoBehaviour {
     [SerializeField]
     private Player player;
 
+    [SerializeField]
+    private GameOver gameOver;
+
     private bool isGameOver = false;
 
 	// Use this for initialization
@@ -25,7 +28,7 @@ public class GameConditions : MonoBehaviour {
 
     private void ShowGameOverScreen()
     {
-        Debug.Log("Game over");
+        gameOver.gameObject.SetActive(true);
     }
 
 }
