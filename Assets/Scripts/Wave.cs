@@ -10,11 +10,14 @@ public class Wave : MonoBehaviour {
     [SerializeField]
     private WaveComponent[] waveComponents;
 
+    [SerializeField] private string waveText;
+
     private float timeElapsed = 0f;
     private Enemy[] spawnedEnemies;
     private bool isWaveDone = false;
 
     public bool IsWaveDone { get { return this.isWaveDone;}}
+    public string WaveText { get { return this.waveText; } }
 
     // Use this for initialization
     void Start () {
