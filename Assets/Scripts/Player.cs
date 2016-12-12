@@ -24,7 +24,7 @@ public class Player : MonoBehaviour {
 	private GameObject Body;
 
 	[SerializeField]
-	private float Speed = 10;
+	public float Speed = 10;
 
     [SerializeField]
     private Damagable damagable;

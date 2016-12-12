@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 50221702743957786}
   - component: {fileID: 114945487803721712}
   - component: {fileID: 114800233788618816}
+  - component: {fileID: 114924789568518022}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -364,6 +365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  applyDamage: 0
 --- !u!114 &114473519262662746
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -377,9 +379,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Body: {fileID: 1567005265244446}
   Speed: 5
-  attachedDamagers:
-  - {fileID: 114195489511220800}
-  - {fileID: 114488260906642546}
   damagable: {fileID: 114945487803721712}
   healthBarFillImg: {fileID: 0}
 --- !u!114 &114488260906642546
@@ -394,6 +393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  applyDamage: 0
 --- !u!114 &114800233788618816
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -403,6 +403,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5bc9cb2f56c5be43b0c9c6076f2b189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 212860633204068722}
+  effectDurationSeconds: 0.1
+--- !u!114 &114924789568518022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1670070862478192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c539e7c8c8f6754a9c4b20b0fa0e3e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 212860633204068722}
@@ -419,6 +432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 25
+  invincibleEffect: {fileID: 114924789568518022}
   damageEffect: {fileID: 114800233788618816}
   deathEffect: {fileID: 198256853100910680}
   deathSplat: {fileID: 212104210141459072, guid: ca51db34187cde84f8a32cf0a770801a,

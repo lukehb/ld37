@@ -7,11 +7,11 @@ public sealed class HamHandsPickup : Pickup
         Transform handsTransform = player.transform.Find("Body/Hands");
         if (handsTransform != null)
         {
-            handsTransform.gameObject.AddComponent<HamHandsTimer>();
+            handsTransform.gameObject.AddComponent<Timer>();
         }
     }
 
-    private sealed class HamHandsTimer : MonoBehaviour
+    private sealed class Timer : MonoBehaviour
     {
         private float timeRemaining = 8.0f;
 

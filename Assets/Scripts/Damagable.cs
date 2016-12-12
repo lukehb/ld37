@@ -11,6 +11,9 @@ public class Damagable : MonoBehaviour {
     private float health = 5;
 
     [SerializeField]
+    private InvincibleEffect invincibleEffect;
+
+    [SerializeField]
     private DamageEffect damageEffect;
 
     [SerializeField]
@@ -24,6 +27,8 @@ public class Damagable : MonoBehaviour {
     private bool hasDeathEffectStarted = false;
     private float maxHealth = 5;
 
+    public bool IsInvincible { get; set; }
+
 	// Use this for initialization
 	void Start () {
         this.maxHealth = health;
@@ -31,6 +36,18 @@ public class Damagable : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (this.invincibleEffect != null)
+        {
+            if (this.IsInvincible)
+            {
+                this.invincibleEffect.PlayEffect();
+            }
+            else
+            {
+                this.invincibleEffect.StopEffect();
+            }
+        }
+
         //check if death effect has been told to play and is done playing
 		if(hasDeathEffectStarted && !deathEffect.IsAlive())
         {
@@ -66,10 +83,13 @@ public class Damagable : MonoBehaviour {
 	}
 
     void OnTriggerStay2D(Collider2D other){
-        Damager damager = other.GetComponent<Damager>();
-        if(damager != null)
+        if (!this.IsInvincible)
         {
-            damager.DealDamageTo(this);
+            Damager damager = other.GetComponent<Damager>();
+            if(damager != null)
+            {
+                damager.DealDamageTo(this);
+            }
         }
     }
 
