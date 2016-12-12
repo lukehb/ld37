@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114917767707471402}
   - component: {fileID: 61016441621522536}
   m_Layer: 0
-  m_Name: HamHands
+  m_Name: HamHandsPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
