@@ -38,7 +38,11 @@ public class Damagable : MonoBehaviour {
             Quaternion rot = new Quaternion();
             rot.eulerAngles = new Vector3(0, 0, Random.value * 360);
             SpriteRenderer deathSplatInst = Instantiate(deathSplat, this.transform.position, rot);
-            deathSplatInst.transform.localScale =  deathSplatInst.transform.localScale + Random.onUnitSphere;
+
+            float deathSplatSize = Mathf.Max(deathSplatInst.transform.localScale.x, deathSplatInst.transform.localScale.y, deathSplatInst.transform.localScale.z)
+                * Mathf.Max(this.transform.localScale.x, this.transform.localScale.y, this.transform.localScale.z);
+
+            deathSplatInst.transform.localScale = new Vector3(deathSplatSize, deathSplatSize, deathSplatSize) + Random.onUnitSphere;
             //spawn in item drop prefab if it has one
             if(itemDropPrefab != null)
             {
