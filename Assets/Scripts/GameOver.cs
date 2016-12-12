@@ -24,6 +24,12 @@ public class GameOver : MonoBehaviour {
     [SerializeField]
     private float effectDelaySeconds = 0.1f;
 
+    [SerializeField]
+    private AudioSource gameBgMusic;
+
+    [SerializeField]
+    private float minAudioVolume;
+
     private float timeElapsed = 0f;
     private bool effectStarted = false;
 
@@ -46,9 +52,16 @@ public class GameOver : MonoBehaviour {
             this.retryButton.image.CrossFadeAlpha(1, effectDurationSeconds, true);
             this.effectStarted = true;
         }
-        else if(!effectStarted && timeElapsed <= effectDelaySeconds)
+        
+        if(timeElapsed < effectDelaySeconds + effectDurationSeconds)
         {
             this.timeElapsed += Time.deltaTime;
+        }
+
+        if(timeElapsed > effectDelaySeconds && gameBgMusic.volume > minAudioVolume)
+        {
+            float volume = 1 - (timeElapsed - effectDelaySeconds) / effectDurationSeconds;
+            gameBgMusic.volume = Mathf.Max(volume, minAudioVolume);
         }
 	}
 
