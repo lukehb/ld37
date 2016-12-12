@@ -7,6 +7,12 @@ public class Damagable : MonoBehaviour {
     /**
      * Exposed inspector fields
      **/
+     [SerializeField]
+    private AudioClip hitSound = null;
+
+    [SerializeField]
+    private AudioClip deathSound = null;
+
     [SerializeField]
     private float health = 5;
 
@@ -107,8 +113,14 @@ public class Damagable : MonoBehaviour {
         this.damageEffect.PlayEffect();
         if (health <= 0 && !this.hasDeathEffectStarted)
         {
+            GlobalAudioSource.Instance.PlayOneShot(this.deathSound);
+
             this.hasDeathEffectStarted = true;
             deathEffect.Play();
+        }
+        else
+        {
+            GlobalAudioSource.Instance.PlayOneShot(this.hitSound);
         }
     }
 

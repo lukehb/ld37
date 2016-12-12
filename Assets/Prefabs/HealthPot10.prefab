@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60c2b851f8534734698cac90e31fb3b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupSound: {fileID: 8300000, guid: fbfd3fd5dd24ee440afb878524dcf002, type: 3}
   healthRestoreAmount: 10
 --- !u!212 &212850494272176900
 SpriteRenderer:

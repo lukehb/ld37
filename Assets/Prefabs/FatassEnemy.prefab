@@ -349,7 +349,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2de2566c4d517d44ebbf13c9214ed40a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitSound: {fileID: 8300000, guid: 841a3c2a58feb464c99b37ab98742f35, type: 3}
+  deathSound: {fileID: 8300000, guid: 01b5b964d8bc7b14a92d84c8965a073d, type: 3}
   health: 30
+  invincibleEffect: {fileID: 0}
   damageEffect: {fileID: 114902732040725944}
   deathEffect: {fileID: 198175645211692216}
   deathSplat: {fileID: 212104210141459072, guid: ca51db34187cde84f8a32cf0a770801a,

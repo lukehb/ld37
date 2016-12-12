@@ -349,6 +349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  applyDamage: 0
 --- !u!114 &114243123573384406
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -361,6 +362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  applyDamage: 0
 --- !u!114 &114314331951156292
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -372,7 +374,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2de2566c4d517d44ebbf13c9214ed40a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitSound: {fileID: 8300000, guid: 841a3c2a58feb464c99b37ab98742f35, type: 3}
+  deathSound: {fileID: 8300000, guid: 01b5b964d8bc7b14a92d84c8965a073d, type: 3}
   health: 5
+  invincibleEffect: {fileID: 0}
   damageEffect: {fileID: 114491720018824330}
   deathEffect: {fileID: 198915926915328834}
   deathSplat: {fileID: 212104210141459072, guid: ca51db34187cde84f8a32cf0a770801a,
@@ -388,6 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574689ff3f8638542b81bc8b62bc0d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stepInterval: 0
   turnSpeed: 1
   moveSpeed: 1
   attackRadius: 2

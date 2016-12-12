@@ -431,6 +431,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2de2566c4d517d44ebbf13c9214ed40a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitSound: {fileID: 8300000, guid: 841a3c2a58feb464c99b37ab98742f35, type: 3}
+  deathSound: {fileID: 8300000, guid: 01b5b964d8bc7b14a92d84c8965a073d, type: 3}
   health: 25
   invincibleEffect: {fileID: 114924789568518022}
   damageEffect: {fileID: 114800233788618816}
