@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /**
  * Enemy always slowly turns to face players.
@@ -9,6 +7,9 @@ using UnityEngine;
  **/
 
 public class Enemy : MonoBehaviour {
+
+    [SerializeField]
+    private float stepInterval = 0.0f;
 
     [SerializeField]
     private float turnSpeed;
@@ -58,7 +59,14 @@ public class Enemy : MonoBehaviour {
 
     protected virtual void Move()
     {
-        this.transform.position = Vector3.MoveTowards(this.transform.position, this.Target.transform.position, moveSpeed * Time.deltaTime);
+        float stepWeight = 1.0f;
+
+        if (this.stepInterval > 0.0f)
+        {
+            stepWeight = Mathf.Abs(Mathf.Sin(Time.time / this.stepInterval));
+        }
+
+        this.transform.position = Vector3.MoveTowards(this.transform.position, this.Target.transform.position, stepWeight * moveSpeed * Time.deltaTime);
     }
 
     protected virtual void Turn()
