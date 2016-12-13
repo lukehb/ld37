@@ -1,5 +1,5 @@
 # Bare Knuckle Gladiators
-Ludum Dare 37 jam entry - made in Unity 5.5.
+Ludum Dare 37 jam entry - made in Unity 5.5 in 72hrs or less.
 
 You are a gladiator, fight to be the best, fight to entertain. There is only one catch, all you have to fight with is your bare hands. 
 WASD to move, Click to attack.
